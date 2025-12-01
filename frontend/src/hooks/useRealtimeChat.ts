@@ -65,6 +65,19 @@ export const useRealtimeChat = () => {
         });
       });
 
+      newSession.on('transcript', (transcript: { text: string, final: boolean }) => {
+        console.log("Received transcript:", transcript.text, "final:", transcript.final);
+        setMessages(prev => {
+          const lastMessage = prev[prev.length - 1];
+          if (lastMessage && lastMessage.role === 'user' && !transcript.final) {
+            const updatedLastMessage = { ...lastMessage, content: transcript.text };
+            return [...prev.slice(0, -1), updatedLastMessage];
+          } else {
+            return [...prev, { role: 'user', content: transcript.text }];
+          }
+        });
+      });
+
       newSession.on('audio:assistant:start', () => {
         console.log("Assistant started speaking.");
         setIsSpeaking(true);

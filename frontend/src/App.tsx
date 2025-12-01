@@ -27,9 +27,9 @@ export default function App() {
 
   return (
     <div className="flex h-screen w-screen items-center justify-center bg-gray-100">
-      <div className="relative h-[852px] w-[393px]">
+      <div className="relative w-full h-full max-w-[393px] max-h-[852px] mx-auto">
         {activeScreen === "home" && <HomeScreen onMenuClick={handleMenuClick} onStartCall={handleStartCall} />}
-        {activeScreen === "chat" && <RefactoredChatScreen onMenuClick={handleMenuClick} />}
+        {activeScreen === "chat" && <RefactoredChatScreen onMenuClick={handleMenuClick} onNavigateToAnalysis={() => handleNavigate("analysis")} />}
         {activeScreen === "analysis" && <AnalysisResultScreen onMenuClick={handleMenuClick} />}
         {activeScreen === "diary" && <RiskScoreScreen onMenuClick={handleMenuClick} />}
         
