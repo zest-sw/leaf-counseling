@@ -102,8 +102,7 @@ export const useRealtimeChat = () => {
       });
 
       // 4. Connect to OpenAI
-      console.log("Connecting with apiKey (ephemeral):", clientSecret);
-      await newSession.connect({ apiKey: clientSecret });
+      await newSession.connect({ clientSecret });
       console.log("Session connected successfully.");
 
     } catch (err: any) {
