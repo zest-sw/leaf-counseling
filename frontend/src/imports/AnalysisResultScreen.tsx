@@ -1,76 +1,6 @@
-import svgPaths from "./svg-t4b7sjjr0o";
+import Nav from "../components/common/Nav";
+import StatusBars from "../components/common/StatusBars";
 import imgImage1 from "../assets/34ff20b38e9681b0b00e4579d5e277efb0b475ea.png";
-
-function StatusBars() {
-  return (
-    <div className="absolute h-[48px] left-[calc(50%+0.5px)] top-[13px] translate-x-[-50%] w-[390px]" data-name="Status Bars">
-      <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 390 48">
-        <g id="Status Bars">
-          <g id="Battery">
-            <rect fill="var(--fill-0, black)" height="13" id="Border" opacity="0.35" rx="3.5" width="25" x="336.333" y="19.3333" />
-            <path d={svgPaths.p247f1a00} fill="var(--fill-0, black)" id="Cap" opacity="0.4" />
-            <rect fill="var(--fill-0, black)" height="9" id="Capacity" rx="1.33333" width="21" x="338.333" y="21.3333" />
-          </g>
-          <path d={svgPaths.p1dcee800} fill="var(--fill-0, black)" id="Wifi" />
-          <path d={svgPaths.p247df000} fill="var(--fill-0, black)" id="Cellular Connection" />
-          <g id="Time">
-            <path d={svgPaths.p25f61500} fill="var(--fill-0, black)" />
-            <path d={svgPaths.p2db11580} fill="var(--fill-0, black)" />
-            <path d={svgPaths.p11e79280} fill="var(--fill-0, black)" />
-            <path d={svgPaths.pc88ec80} fill="var(--fill-0, black)" />
-          </g>
-        </g>
-      </svg>
-    </div>
-  );
-}
-
-function Frame2() {
-  return (
-    <div className="absolute content-stretch flex gap-[2px] items-center justify-center left-1/2 top-[calc(50%+0.5px)] translate-x-[-50%] translate-y-[-50%]">
-      <p className="[text-shadow:rgba(255,255,255,0.25)_0px_0px_4px] font-['LINE_Seed_Sans_KR:Bold',sans-serif] leading-[1.25] not-italic relative shrink-0 text-[20px] text-black text-center text-nowrap whitespace-pre">리프</p>
-    </div>
-  );
-}
-
-function MenuIcon({ onClick }: { onClick: () => void }) {
-  return (
-    <button
-      onClick={onClick}
-      className="absolute left-[25px] size-[24px] top-1/2 translate-y-[-50%] cursor-pointer"
-      data-name="menuIcon"
-    >
-      <div className="absolute bottom-0 left-[-4.17%] right-[-4.17%] top-0">
-        <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 26 24">
-          <g filter="url(#filter0_d_1_297)" id="menuIcon">
-            <path d={svgPaths.p3372cb80} fill="var(--fill-0, black)" id="Vector" />
-          </g>
-          <defs>
-            <filter colorInterpolationFilters="sRGB" filterUnits="userSpaceOnUse" height="32" id="filter0_d_1_297" width="32" x="-3" y="-4">
-              <feFlood floodOpacity="0" result="BackgroundImageFix" />
-              <feColorMatrix in="SourceAlpha" result="hardAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
-              <feOffset />
-              <feGaussianBlur stdDeviation="2" />
-              <feComposite in2="hardAlpha" operator="out" />
-              <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.25 0" />
-              <feBlend in2="BackgroundImageFix" mode="normal" result="effect1_dropShadow_1_297" />
-              <feBlend in="SourceGraphic" in2="effect1_dropShadow_1_297" mode="normal" result="shape" />
-            </filter>
-          </defs>
-        </svg>
-      </div>
-    </button>
-  );
-}
-
-function Nav() {
-  return (
-    <div className="absolute h-[60px] left-0 overflow-clip top-[61px] w-[390px]" data-name="nav">
-      <Frame2 />
-      <MenuIcon />
-    </div>
-  );
-}
 
 function Cp() {
   return (
@@ -97,7 +27,7 @@ function Frame3() {
     <div className="absolute content-stretch flex items-center justify-between left-[60px] top-[245px] w-[274px]">
       <div className="h-[21px] relative shrink-0 w-[22px]" data-name="Vector">
         <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 22 21">
-          <path d={svgPaths.p787b580} fill="var(--fill-0, #A3D78A)" id="Vector" />
+          <path d="M11 0C17.0751 0 22 4.70101 22 10.5C22 16.299 17.0751 21 11 21C4.92487 21 0 16.299 0 10.5C0 4.70101 4.92487 0 11 0ZM11 1.82609C5.95254 1.82609 1.91304 5.66953 1.91304 10.5C1.91304 15.3305 5.95254 19.1739 11 19.1739C16.0475 19.1739 20.087 15.3305 20.087 10.5C20.087 5.66953 16.0475 1.82609 11 1.82609ZM11 5.21739C11.5059 5.21739 11.913 5.60832 11.913 6.09783V11.413C11.913 11.9026 11.5059 12.2935 11 12.2935C10.4941 12.2935 10.087 11.9026 10.087 11.413V6.09783C10.087 5.60832 10.4941 5.21739 11 5.21739ZM11 14.7826C11.5976 14.7826 12.087 15.2536 12.087 15.8261C12.087 16.3986 11.5976 16.8696 11 16.8696C10.4024 16.8696 9.91304 16.3986 9.91304 15.8261C9.91304 15.2536 10.4024 14.7826 11 14.7826Z" fill="var(--fill-0, #A3D78A)" id="Vector" />
         </svg>
       </div>
       <p className="font-['LINE_Seed_Sans_KR:Regular',sans-serif] leading-[24px] not-italic relative shrink-0 text-[#303437] text-[16px] w-[209px]">당신의 마음은 오늘 흐림입니다.</p>
@@ -148,8 +78,6 @@ export default function AnalysisResultScreen({ onMenuClick }: { onMenuClick: () 
     <div className="bg-gradient-to-r from-[#ffffff] overflow-clip relative rounded-[60px] size-full to-[#ffffff]" style={{ backgroundImage: "url('data:image/svg+xml;utf8,<svg viewBox=\\\'0 0 393 852\\\' xmlns=\\\'http://www.w3.org/2000/svg\\\' preserveAspectRatio=\\\'none\\\'><rect x=\\\'0\\\' y=\\\'0\\\' height=\\\'100%\\\' width=\\\'100%\\\' fill=\\\'url(%23grad)\\\' opacity=\\\'0.5\\\'/><defs><radialGradient id=\\\'grad\\\' gradientUnits=\\\'userSpaceOnUse\\\' cx=\\\'0\\\' cy=\\\'0\\\' r=\\\'10\\\' gradientTransform=\\\'matrix(1.2234e-13 20.85 -17.428 1.7549e-13 196.5 426)\\\'><stop stop-color=\\\'rgba(163,215,138,1)\\\' offset=\\\'0\\\'/><stop stop-color=\\\'rgba(209,235,188,1)\\\' offset=\\\'0.5\\\'/><stop stop-color=\\\'rgba(255,255,237,1)\\\' offset=\\\'1\\\'/></radialGradient></defs></svg>')" }}>
 
       <StatusBars />
-
-      <Nav />
 
       <Nav onMenuClick={onMenuClick} />
 

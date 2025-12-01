@@ -1,76 +1,6 @@
-import svgPaths from "./svg-q12y9eg68c";
+import Nav from "../components/common/Nav";
+import StatusBars from "../components/common/StatusBars";
 import imgImage1 from "../assets/34ff20b38e9681b0b00e4579d5e277efb0b475ea.png";
-
-function StatusBars() {
-  return (
-    <div className="absolute h-[48px] left-[calc(50%+0.5px)] top-[13px] translate-x-[-50%] w-[390px]" data-name="Status Bars">
-      <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 390 48">
-        <g id="Status Bars">
-          <g id="Battery">
-            <rect fill="var(--fill-0, black)" height="13" id="Border" opacity="0.35" rx="3.5" width="25" x="336.333" y="19.3333" />
-            <path d={svgPaths.p247f1a00} fill="var(--fill-0, black)" id="Cap" opacity="0.4" />
-            <rect fill="var(--fill-0, black)" height="9" id="Capacity" rx="1.33333" width="21" x="338.333" y="21.3333" />
-          </g>
-          <path d={svgPaths.p1dcee800} fill="var(--fill-0, black)" id="Wifi" />
-          <path d={svgPaths.p247df000} fill="var(--fill-0, black)" id="Cellular Connection" />
-          <g id="Time">
-            <path d={svgPaths.p25f61500} fill="var(--fill-0, black)" />
-            <path d={svgPaths.p2db11580} fill="var(--fill-0, black)" />
-            <path d={svgPaths.p11e79280} fill="var(--fill-0, black)" />
-            <path d={svgPaths.pc88ec80} fill="var(--fill-0, black)" />
-          </g>
-        </g>
-      </svg>
-    </div>
-  );
-}
-
-function Frame16() {
-  return (
-    <div className="absolute content-stretch flex gap-[2px] items-center justify-center left-1/2 top-[calc(50%+0.5px)] translate-x-[-50%] translate-y-[-50%]">
-      <p className="[text-shadow:rgba(255,255,255,0.25)_0px_0px_4px] font-['LINE_Seed_Sans_KR:Bold',sans-serif] leading-[1.25] not-italic relative shrink-0 text-[20px] text-black text-center text-nowrap whitespace-pre">리프</p>
-    </div>
-  );
-}
-
-function MenuIcon({ onClick }: { onClick: () => void }) {
-  return (
-    <button
-      onClick={onClick}
-      className="absolute left-[25px] size-[24px] top-1/2 translate-y-[-50%] cursor-pointer"
-      data-name="menuIcon"
-    >
-      <div className="absolute bottom-0 left-[-4.17%] right-[-4.17%] top-0">
-        <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 26 24">
-          <g filter="url(#filter0_d_1_268)" id="menuIcon">
-            <path d={svgPaths.p3372cb80} fill="var(--fill-0, black)" id="Vector" />
-          </g>
-          <defs>
-            <filter colorInterpolationFilters="sRGB" filterUnits="userSpaceOnUse" height="32" id="filter0_d_1_268" width="32" x="-3" y="-4">
-              <feFlood floodOpacity="0" result="BackgroundImageFix" />
-              <feColorMatrix in="SourceAlpha" result="hardAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
-              <feOffset />
-              <feGaussianBlur stdDeviation="2" />
-              <feComposite in2="hardAlpha" operator="out" />
-              <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.25 0" />
-              <feBlend in2="BackgroundImageFix" mode="normal" result="effect1_dropShadow_1_268" />
-              <feBlend in="SourceGraphic" in2="effect1_dropShadow_1_268" mode="normal" result="shape" />
-            </filter>
-          </defs>
-        </svg>
-      </div>
-    </button>
-  );
-}
-
-function Nav({ onMenuClick }: { onMenuClick: () => void }) {
-  return (
-    <div className="absolute h-[60px] left-0 overflow-clip top-[61px] w-[390px]" data-name="nav">
-      <Frame16 />
-      <MenuIcon onClick={onMenuClick} />
-    </div>
-  );
-}
 
 function TextBox() {
   return (
@@ -113,7 +43,7 @@ function Frame() {
     <div className="absolute left-0 size-[24px] top-0" data-name="Frame">
       <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 24 24">
         <g id="Frame">
-          <path d={svgPaths.p88e6380} fill="var(--fill-0, white)" id="Vector" />
+          <path d="M12.25 24C18.4378 24 23.5 18.6274 23.5 12C23.5 5.37258 18.4378 0 12.25 0C6.06218 0 1 5.37258 1 12C1 18.6274 6.06218 24 12.25 24Z" fill="var(--fill-0, white)" id="Vector" />
         </g>
       </svg>
     </div>
@@ -212,7 +142,7 @@ function Frame2() {
     <div className="absolute left-0 size-[24px] top-0" data-name="Frame">
       <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 24 24">
         <g id="Frame">
-          <path d={svgPaths.p88e6380} fill="var(--fill-0, white)" id="Vector" />
+          <path d="M12.25 24C18.4378 24 23.5 18.6274 23.5 12C23.5 5.37258 18.4378 0 12.25 0C6.06218 0 1 5.37258 1 12C1 18.6274 6.06218 24 12.25 24Z" fill="var(--fill-0, white)" id="Vector" />
         </g>
       </svg>
     </div>
@@ -343,7 +273,7 @@ function Frame4() {
     <div className="absolute left-0 size-[24px] top-0" data-name="Frame">
       <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 24 24">
         <g id="Frame">
-          <path d={svgPaths.p88e6380} fill="var(--fill-0, white)" id="Vector" />
+          <path d="M12.25 24C18.4378 24 23.5 18.6274 23.5 12C23.5 5.37258 18.4378 0 12.25 0C6.06218 0 1 5.37258 1 12C1 18.6274 6.06218 24 12.25 24Z" fill="var(--fill-0, white)" id="Vector" />
         </g>
       </svg>
     </div>
@@ -427,7 +357,7 @@ function Frame6() {
     <div className="absolute left-0 size-[24px] top-0" data-name="Frame">
       <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 24 24">
         <g id="Frame">
-          <path d={svgPaths.p88e6380} fill="var(--fill-0, white)" id="Vector" />
+          <path d="M12.25 24C18.4378 24 23.5 18.6274 23.5 12C23.5 5.37258 18.4378 0 12.25 0C6.06218 0 1 5.37258 1 12C1 18.6274 6.06218 24 12.25 24Z" fill="var(--fill-0, white)" id="Vector" />
         </g>
       </svg>
     </div>
