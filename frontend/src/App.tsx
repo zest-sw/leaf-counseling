@@ -1,9 +1,9 @@
 import { useState } from "react";
 import HomeScreen from "./components/HomeScreen";
 import SideMenu from "./components/SideMenu";
-import ChatScreen from "./imports/ChatScreen";
-import AnalysisResultScreen from "./imports/AnalysisResultScreen";
-import RiskScoreScreen from "./imports/RiskScoreScreen";
+import ChatScreen from "./screens/ChatScreen";
+import AnalysisResultScreen from "./screens/AnalysisResultScreen";
+import RiskScoreScreen from "./screens/RiskScoreScreen";
 
 export default function App() {
   const [activeScreen, setActiveScreen] = useState<"home" | "chat" | "analysis" | "diary">("home");
