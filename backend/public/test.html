@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WebSocket Test</title>
+</head>
+<body>
+    <h1>WebSocket Connection Test</h1>
+    <p>Check the browser console for logs.</p>
+    <script>
+        console.log("Attempting to connect to ws://localhost:3001");
+        const ws = new WebSocket("ws://localhost:3001");
+
+        ws.onopen = () => {
+            console.log("Connection OPENED!");
+            document.body.innerHTML += '<p style="color: green;">Success: WebSocket connection opened!</p>';
+        };
+
+        ws.onerror = (event) => {
+            console.error("Connection FAILED!", event);
+            document.body.innerHTML += '<p style="color: red;">Failure: WebSocket connection error. Check console.</p>';
+        };
+
+        ws.onclose = (event) => {
+            console.log("Connection CLOSED.", event);
+        };
+
+        ws.onmessage = (event) => {
+            console.log("Message from server:", event.data);
+        };
+    </script>
+</body>
+</html>
