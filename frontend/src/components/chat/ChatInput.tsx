@@ -6,7 +6,6 @@ interface ChatInputProps {
   onSendMessage: () => void;
   isConnecting: boolean;
   error: string | null;
-  onAnalysisClick: () => void;
 }
 
 export function ChatInput({
@@ -15,7 +14,6 @@ export function ChatInput({
   onSendMessage,
   isConnecting,
   error,
-  onAnalysisClick,
 }: ChatInputProps) {
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
@@ -41,12 +39,6 @@ export function ChatInput({
           disabled={!inputValue.trim() || isConnecting || !!error}
         >
           전송
-        </button>
-        <button
-          onClick={onAnalysisClick}
-          className="px-4 py-2 rounded-full bg-gray-200 text-gray-600 transition-colors"
-        >
-          결과 분석
         </button>
       </div>
     </div>

@@ -39,8 +39,8 @@ interface NavProps {
 
 export default function Nav({ onMenuClick }: NavProps) {
   return (
-    <div className="absolute h-[60px] left-0 overflow-clip top-[61px] w-[390px]" data-name="nav">
-      <div className="absolute content-stretch flex gap-[2px] items-center justify-center left-1/2 top-[calc(50%+0.5px)] translate-x-[-50%] translate-y-[-50%]">
+    <div className="absolute h-[60px] left-0 overflow-clip top-0 w-full py-4" data-name="nav">
+      <div className="absolute content-stretch flex gap-[2px] items-center justify-center left-1/2 top-1/2 translate-x-[-50%] translate-y-[-50%]">
         <p className="[text-shadow:rgba(255,255,255,0.25)_0px_0px_4px] font-['LINE_Seed_Sans_KR:Bold',sans-serif] leading-[1.25] not-italic relative shrink-0 text-[20px] text-black text-center text-nowrap whitespace-pre">리프</p>
       </div>
       <MenuIcon onClick={onMenuClick} />
