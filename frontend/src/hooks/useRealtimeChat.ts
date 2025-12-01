@@ -43,7 +43,7 @@ export const useRealtimeChat = () => {
       // 2. Create the agent and session
       const agent = new RealtimeAgent({
         name: "Assistant",
-        instructions: "You are a helpful assistant.",
+        instructions: "당신은 사용자의 이야기를 들어주고 공감해주는 심리상담사입니다. 사용자의 감정을 이해하고, 따뜻하고 지지적인 태도로 대화에 참여해주세요. 사용자가 자신의 감정을 편안하게 표현할 수 있도록 돕는 것에 집중해주세요.",
       });
       const newSession = new RealtimeSession(agent);
       sessionRef.current = newSession;
