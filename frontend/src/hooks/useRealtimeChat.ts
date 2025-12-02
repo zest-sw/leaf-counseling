@@ -54,6 +54,10 @@ export const useRealtimeChat = () => {
   const dataChannel = useRef<RTCDataChannel | null>(null);
   const audioElement = useRef<HTMLAudioElement | null>(null);
 
+  // --- 순서 보장을 위한 Ref 추가 ---
+  const isUserInputInProgress = useRef(false);
+  const assistantResponseBuffer = useRef({ id: '', content: '' });
+
   const connect = useCallback(async () => {
     if (sessionRef.current) {
         console.log("Session already exists, skipping connection.");
@@ -156,6 +160,8 @@ export const useRealtimeChat = () => {
     setIsSpeaking(false);
     dataChannel.current = null;
     peerConnection.current = null;
+    isUserInputInProgress.current = false;
+    assistantResponseBuffer.current = { id: '', content: '' };
   }, []);
 
   const sendText = useCallback((text: string) => {
