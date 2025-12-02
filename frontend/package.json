@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@openai/agents": "^0.3.3",
+    "@openai/realtime-api-beta": "github:openai/openai-realtime-api-beta",
     "@tailwindcss/postcss": "^4.1.17",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"

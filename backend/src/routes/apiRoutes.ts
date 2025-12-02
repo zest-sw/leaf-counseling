@@ -9,9 +9,20 @@ apiRouter.post('/generate-token', async (req, res) => {
     try {
         const sessionConfig = {
             session: {
+                // type: "realtime",
+                // model: "gpt-realtime-mini",
+                // audio: { output: { voice: "marin" } },
                 type: "realtime",
-                model: "gpt-realtime-mini",
-                audio: { output: { voice: "marin" } },
+                audio:{
+                    input:{
+                        transcription:{
+                            language: "ko",
+                            model: "whisper-1"
+                        }
+                    }
+                },
+                model: "gpt-realtime-mini", // 모델명 명시 권장
+
             },
         };
 
