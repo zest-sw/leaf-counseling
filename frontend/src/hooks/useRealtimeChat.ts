@@ -54,66 +54,95 @@ export const useRealtimeChat = () => {
   const dataChannel = useRef<RTCDataChannel | null>(null);
   const audioElement = useRef<HTMLAudioElement | null>(null);
 
+  // --- 순서 보장을 위한 Ref 추가 ---
+  const isUserInputInProgress = useRef(false);
+  const assistantResponseBuffer = useRef({ id: '', content: '' });
+
   const handleServerEvent = useCallback((event: any) => {
     // 1. 발화 상태(Speaking) 업데이트
     if (event.type === 'response.audio.delta') setIsSpeaking(true);
     else if (event.type === 'response.done') setIsSpeaking(false);
-    else if (event.type === 'input_audio_buffer.speech_started') setIsSpeaking(false);
-
-    // 2. [실시간 콘솔] 유저 STT 완료 시점
-
+    
+    // 2. 사용자 발화 시작/종료 플래그 관리
+    if (event.type === 'input_audio_buffer.speech_started') {
+      isUserInputInProgress.current = true;
+      setIsSpeaking(false); // AI 발화 중지
+    }
+    
+    // 3. 콘솔 로그 (디버깅용)
     if (event.type === 'conversation.item.input_audio_transcription.completed') {
-        const text = event.transcript.trim();
-        if (text) console.log(`🎤 [User]: ${text}`);
+      const text = event.transcript.trim();
+      if (text) console.log(`🎤 [User]: ${text}`);
     }
-
-    // 3. [실시간 콘솔] AI 응답 스트리밍 (delta 확인용)
-    // 님께서 보내주신 로그 이름(output_audio_transcript.delta)을 여기에 추가했습니다.
     if (event.type === 'response.output_audio_transcript.delta') {
-        // 한 글자씩 올 때마다 찍으면 너무 많을 수 있으니, 필요하면 주석 해제하세요.
-        // console.log(`🤖 [AI-Stream]: ${event.delta}`); 
+      // console.log(`🤖 [AI-Stream]: ${event.delta}`); 
     }
-
-    // AI 응답 완료 시 전체 문장 출력
     if (event.type === 'response.done' && event.response?.output) {
-        event.response.output.forEach((item: any) => {
-            const content = item.content?.find((c: any) => c.type === 'text' || c.type === 'audio');
-            const text = content?.transcript || content?.text;
-            if (text) console.log(`🤖 [Assistant]: ${text}`);
-        });
+      event.response.output.forEach((item: any) => {
+        const content = item.content?.find((c: any) => c.type === 'text' || c.type === 'audio');
+        const text = content?.transcript || content?.text;
+        if (text) console.log(`🤖 [Assistant]: ${text}`);
+      });
     }
-
     if (event.type === 'error') {
-        console.error("OpenAI Error:", event.error);
+      console.error("OpenAI Error:", event.error);
     }
 
-    // 4. 메시지 UI 업데이트 (화면 표시 로직)
+    // 4. 메시지 UI 업데이트 로직 수정
     setMessages((prev) => {
       const lastMsg = prev[prev.length - 1];
-      
-      // ★ [핵심 수정] 이벤트 이름 매칭 (님이 주신 로그에 맞춤)
       const isAiTextDelta = 
           event.type === 'response.text.delta' || 
           event.type === 'response.audio_transcript.delta' ||
-          event.type === 'response.output_audio_transcript.delta'; // 👈 이거 추가됨!
+          event.type === 'response.output_audio_transcript.delta';
 
+      // --- 핵심 수정 로직 ---
+
+      // 4.1. 사용자 발화 중일 때 AI 응답은 버퍼에 저장
+      if (isAiTextDelta && isUserInputInProgress.current) {
+        assistantResponseBuffer.current.content += event.delta || '';
+        if (!assistantResponseBuffer.current.id) {
+          assistantResponseBuffer.current.id = event.event_id || event.response_id;
+        }
+        return prev; // 아직 화면 업데이트 안 함
+      }
+
+      // 4.2. 사용자 발화가 끝났을 때
+      if (event.type === 'conversation.item.input_audio_transcription.completed') {
+        isUserInputInProgress.current = false; // 플래그 해제
+        const transcript = event.transcript || '';
+        let newMessages = [...prev];
+        
+        // 4.2.1. 사용자 메시지 추가
+        if (transcript) {
+          newMessages.push({ id: event.item_id, role: 'user', content: transcript });
+        }
+        
+        // 4.2.2. 버퍼에 있던 AI 응답 추가
+        if (assistantResponseBuffer.current.content) {
+          newMessages.push({ 
+            id: assistantResponseBuffer.current.id, 
+            role: 'assistant', 
+            content: assistantResponseBuffer.current.content 
+          });
+        }
+        
+        // 버퍼 초기화
+        assistantResponseBuffer.current = { id: '', content: '' };
+        return newMessages;
+      }
+
+      // 4.3. (기존 로직) 사용자 발화 중이 아닐 때 AI 응답 처리
       if (isAiTextDelta) {
         const newContent = event.delta || '';
         if (lastMsg && lastMsg.role === 'assistant') {
-          // 기존 말풍선에 글자 이어붙이기
           return [...prev.slice(0, -1), { ...lastMsg, content: lastMsg.content + newContent }];
         } else {
-          // 새 말풍선 시작
           return [...prev, { id: event.event_id || event.response_id, role: 'assistant', content: newContent }];
         }
       }
-      
-      // 유저 텍스트 추가 (STT)
-      if (event.type === 'conversation.item.input_audio_transcription.completed') {
-         const transcript = event.transcript || '';
-         if (transcript) return [...prev, { id: event.item_id, role: 'user', content: transcript }];
-      }
-      return prev;
+
+      return prev; // 그 외 이벤트는 상태 변경 없음
     });
   }, []);
 
@@ -195,6 +224,8 @@ export const useRealtimeChat = () => {
     setIsSpeaking(false);
     dataChannel.current = null;
     peerConnection.current = null;
+    isUserInputInProgress.current = false;
+    assistantResponseBuffer.current = { id: '', content: '' };
   }, []);
 
   const sendText = useCallback((text: string) => {

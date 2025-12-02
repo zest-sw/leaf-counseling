@@ -1,7 +1,7 @@
 import { useState } from "react";
 import HomeScreen from "./components/HomeScreen";
 import SideMenu from "./components/SideMenu";
-import { RefactoredChatScreen } from "./screens/RefactoredChatScreen";
+import  FigmeChatScreen  from "./screens/FigmeChatScreen";
 import AnalysisResultScreen from "./screens/AnalysisResultScreen";
 import RiskScoreScreen from "./screens/RiskScoreScreen";
 
@@ -35,7 +35,7 @@ export default function App() {
     <div className="flex h-screen w-screen items-center justify-center bg-gray-100">
       <div className="relative w-full h-full max-w-[393px] max-h-[852px] mx-auto">
         {activeScreen === "home" && <HomeScreen onMenuClick={handleMenuClick} onStartCall={handleStartCall} />}
-        {activeScreen === "chat" && <RefactoredChatScreen onMenuClick={handleMenuClick} onNavigateToAnalysis={handleNavigateToAnalysis} />}
+        {activeScreen === "chat" && <FigmeChatScreen onMenuClick={handleMenuClick} onNavigateToAnalysis={handleNavigateToAnalysis} />}
         {activeScreen === "analysis" && <AnalysisResultScreen report={analysisReport} onMenuClick={handleMenuClick} />}
         {activeScreen === "diary" && <RiskScoreScreen onMenuClick={handleMenuClick} />}
         
