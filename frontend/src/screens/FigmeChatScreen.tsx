@@ -136,8 +136,7 @@ export default function FigmeChatScreen({ onMenuClick, onNavigateToAnalysis }: F
   }));
 
   return (
-    <div className="bg-gradient-to-r from-[#ffffff] overflow-clip relative rounded-[60px] size-full to-[#ffffff]" style={{ backgroundImage: "url('data:image/svg+xml;utf8,<svg viewBox=\\\'0 0 393 852\\\' xmlns=\\\'http://www.w3.org/2000/svg\\\' preserveAspectRatio=\\\'none\\\'><rect x=\\\'0\\\' y=\\\'0\\\' height=\\\'100%\\\' width=\\\'100%\\\' fill=\\\'url(%23grad)\\\' opacity=\\\'0.5\\\'/><defs><radialGradient id=\\\'grad\\\' gradientUnits=\\\'userSpaceOnUse\\\' cx=\\\'0\\\' cy=\\\'0\\\' r=\\\'10\\\' gradientTransform=\\\'matrix(1.2234e-13 20.85 -17.428 1.7549e-13 196.5 426)\\\'><stop stop-color=\\\'rgba(163,215,138,1)\\\' offset=\\\'0\\\'/><stop stop-color=\\\'rgba(209,235,188,1)\\\' offset=\\\'0.5\\\'/><stop stop-color=\\\'rgba(255,255,237,1)\\\' offset=\\\'1\\\'/></radialGradient></defs></svg>')" }}>
-
+    <div className="chat-screen-background overflow-clip relative rounded-[60px] size-full"> 
       <Nav onMenuClick={onMenuClick} />
       <div className="absolute flex h-[20.946px] items-center justify-center left-[calc(50%+35.24px)] top-[80.93px] translate-x-[-50%] w-[27.472px]" style={{ "--transform-inner-width": "24.28125", "--transform-inner-height": "14.109375" } as React.CSSProperties}>
         <div className="flex-none rotate-[341.977deg]">
@@ -148,7 +147,7 @@ export default function FigmeChatScreen({ onMenuClick, onNavigateToAnalysis }: F
       </div>
       
       {/* Chat Messages Container */}
-      <div ref={scrollContainerRef} className="absolute content-stretch flex flex-col gap-[16px] items-center justify-start left-0 right-0 px-6 top-[135px] bottom-[120px] overflow-y-auto">
+      <div ref={scrollContainerRef} className="absolute content-stretch flex flex-col gap-[16px] items-center justify-start left-0 right-0 px-6 top-[135px] bottom-[120px] overflow-y-auto h-10">
         {formattedMessages.length > 0 && (
           <ChatConversation 
             timestamp={"Today"}
@@ -185,10 +184,10 @@ export default function FigmeChatScreen({ onMenuClick, onNavigateToAnalysis }: F
       </div>
 
       {/* End Call Button */}
-      <div className="absolute bottom-0 w-full flex justify-center pb-8 z-10">
-        <div className={`${isGeneratingReport ? 'opacity-50 pointer-events-none' : ''}`}>
-             <EndCallButton onEndCall={handleEndCall} />
-        </div>
+      <div className="flex h-full justify-center z-10">
+          <div className={`flex-col items-end ${isGeneratingReport ? 'opacity-50 pointer-events-none' : ''}`}>
+              <EndCallButton onEndCall={handleEndCall} />
+          </div>
       </div>
     </div>
   );
