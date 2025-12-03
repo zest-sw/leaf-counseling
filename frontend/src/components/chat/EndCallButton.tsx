@@ -4,10 +4,11 @@ interface EndCallButtonProps {
 
 export default function EndCallButton({ onEndCall }: EndCallButtonProps) {
   return (
-    <div className="absolute bottom-[24px] left-1/2 -translate-x-1/2 z-50">
+    <div className="absolute bottom-[24px] left-1/2 -translate-x-1/2 z-50" >
       <button
         onClick={onEndCall}
-        className="flex items-center gap-3 bg-red-500 hover:bg-red-600 active:bg-red-700 text-white px-6 py-3 rounded-full shadow-lg hover:shadow-xl transition-all group"
+        className="flex items-center gap-3 bg-green-500 hover:bg-green-600 active:bg-green-700 text-white px-6 py-3 rounded-full shadow-lg hover:shadow-xl transition-all group"
+        style={{"backgroundColor": "#A3D78A"} as React.CSSProperties}
       >
         <svg
           className="size-5 group-hover:scale-110 transition-transform"
