@@ -1,7 +1,7 @@
 import { useState } from "react";
 import HomeScreen from "./components/HomeScreen";
 import SideMenu from "./components/SideMenu";
-import  FigmeChatScreen  from "./screens/FigmeChatScreen";
+import  FigmeChatScreen  from "./screens/ChatScreen";
 import AnalysisResultScreen from "./screens/AnalysisResultScreen";
 import RiskScoreScreen from "./screens/RiskScoreScreen";
 
